@@ -4,7 +4,7 @@
 # Kawung Gateway Python
   <b>Implementation of Kawung Gateway written in Python</b>
 
-Development
+[![Python](https://img.shields.io/badge/Python-v3.7-blue?logo=python)](#)
 
 </span>
 <!-- End of Title -->
