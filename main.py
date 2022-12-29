@@ -53,7 +53,6 @@ while True:
         answer = ser_node.readline()
         decode_answer = answer.decode('utf-8')
         ser_node.flushInput()
-        print(decode_answer)
         
         # Save to cache
         f = open("./cache/msg_log.txt","a")
@@ -63,7 +62,14 @@ while True:
         f.close()
     
         # Upload to firebase database
-        if decode_answer.count(",") == 2:
-            get_payload = decode_answer.split(",")
-            up_server(get_payload[0], "suhu", get_payload[1])
-            up_server(get_payload[0], "kelembaban", get_payload[2])
+        if decode_answer.count("|") == 2:
+            print(decode_answer)
+            get_payload = decode_answer.split("|")
+            sender = get_payload[0]
+            path = get_payload[1]
+            if get_payload[2].count(",") == 1:
+                msg_data = get_payload[2].split(",")
+                
+                up_server(sender, "path", path)
+                up_server(sender, "suhu", msg_data[0])
+                up_server(sender, "kelembaban", msg_data[1])
